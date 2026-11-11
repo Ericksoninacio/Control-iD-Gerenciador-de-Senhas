@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Control iD – Gerenciador de Senhas (Diagnóstico)",
+  "version": "0.2.0",
+  "description": "Diagnóstico, validação da API e alteração controlada da senha administrativa de equipamentos Control iD iDFace na rede local.",
+  "minimum_chrome_version": "110",
+  "action": { "default_title": "Abrir Gerenciador Control iD" },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["storage"],
+  "optional_host_permissions": ["http://*/*"]
+}

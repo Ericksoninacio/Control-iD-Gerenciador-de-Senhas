@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control iD – Gerenciador de Senhas (Diagnóstico)</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main>
+  <h1>Control iD iDFace – Diagnóstico da API</h1>
+  <p class="warn">
+    <strong>Atenção:</strong> a comunicação é HTTP (sem criptografia). Use uma rede administrativa controlada
+    e apenas equipamentos que você está autorizado a administrar. A alteração só é liberada para equipamentos com <strong>API validada</strong> e selecionados na tabela.
+  </p>
+
+  <section>
+    <h2>Rede</h2>
+    <div class="grid">
+      <label>IP base <input id="base" value="172.15.30." autocomplete="off"></label>
+      <label>IP inicial <input id="start" value="4" inputmode="numeric"></label>
+      <label>IP final <input id="end" value="4" inputmode="numeric"></label>
+      <label>Porta HTTP <input id="port" value="80" inputmode="numeric"></label>
+      <label>Timeout (ms) <input id="timeout" value="5000" inputmode="numeric"></label>
+      <label>Simultâneos <input id="concurrency" value="4" inputmode="numeric"></label>
+    </div>
+    <p id="preview" class="hint"></p>
+  </section>
+
+  <section>
+    <h2>Credenciais <small>(nunca são salvas)</small></h2>
+    <div class="grid">
+      <label>Usuário atual <input id="username" value="admin" autocomplete="off"></label>
+      <label>Senha atual <input id="current" type="password" autocomplete="off"></label>
+      <label>Nova senha <input id="next" type="password" autocomplete="new-password"></label>
+      <label>Confirmar nova senha <input id="confirm" type="password" autocomplete="new-password"></label>
+    </div>
+    <label class="inline"><input id="show" type="checkbox"> Mostrar senhas</label>
+    <label class="inline"><input id="allowSame" type="checkbox"> Permitir nova senha igual à atual</label>
+    <p id="pwHint" class="hint"></p>
+  </section>
+
+  <section>
+    <label class="inline"><input id="authorized" type="checkbox">
+      Confirmo que sou autorizado a administrar os equipamentos da faixa informada.</label>
+    <div class="buttons">
+      <button id="btnTest">Testar conexão</button>
+      <button id="btnDiagnose">Diagnosticar faixa de IPs</button>
+      <button id="btnValidate">Validar compatibilidade da API</button>
+      <button id="btnChangeOne" disabled title="Selecione exatamente um equipamento.">Alterar senha de um equipamento</button>
+      <button id="btnChangeSel" disabled title="Selecione um ou mais equipamentos com login aceito.">Alterar senha dos selecionados</button>
+      <button id="btnCancel" disabled>Cancelar operação</button>
+      <button id="btnExport" disabled>Exportar relatório (CSV)</button>
+      <button id="btnClear" disabled>Limpar resultados</button>
+    </div>
+    <ul id="errors" class="errors"></ul>
+    <p id="summary" class="hint"></p>
+  </section>
+
+  <section>
+    <h2>Resultados</h2>
+    <div id="tabs" class="tabs" role="tablist"></div>
+    <p id="tabHint" class="hint"></p>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th><input id="selAll" type="checkbox" title="Selecionar todos os visíveis"></th><th>IP</th><th>Estado</th><th>Conexão</th><th>Autenticação</th>
+          <th>Identificação</th><th>Validação da API</th><th>Alteração</th><th>Verificação</th><th>Tempo</th><th>Mensagem</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

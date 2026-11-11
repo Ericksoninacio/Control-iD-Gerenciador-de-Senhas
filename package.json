@@ -1,0 +1,10 @@
+{
+  "name": "controlid-password-manager",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Somente para executar os testes localmente (Node 18+, sem dependências). A extensão em si não usa Node.",
+  "scripts": {
+    "test": "node --test tests/validation-tests.js"
+  }
+}
